@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Toutes les cartes</title>
+</head>
+<body>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Extension</th>
+    <th>Commentaire</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="card : ${cards}">
+    <td th:text="${card.id}"></td>
+    <td th:text="${card.cardname}"></td>
+    <td th:text="${card.extension}"></td>
+    <td th:text="${card.comment}"></td>
+    <td><a th:href="@{/cards/{id}(id=${card.id})}"><button>Résumé</button></a></td>
+  </tr>
+  </tbody>
+</table>
+
+<a th:href="@{/}"><button>Accueil</button></a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Création d'ère</title>
+</head>
+
+<body>
+    <p>Ici, vous pouvez créer une ère.</p><br>
+    <form th:action="@{/eras/newEra}" th:method="post" th:object="${newEra}">
+
+        <label>Nom</label><input type="text" th:field="*{eraname}" /><br />
+        <input th:type="submit" value="Créer">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </form>
+
+    <a th:href="@{/}"><button>Accueil</button></a>
+
+</body>
+
+</html>

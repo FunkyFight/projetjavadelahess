@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Création d'extension</title>
+</head>
+<body>
+<p>Ici, vous pouvez créer une extension.</p><br>
+<form th:action="@{/extensions/newExtension}" th:method="post" th:object="${newExt}">
+    <label>ID</label><input type="text" th:field="*{id}"/><br/>
+    <label>Nom</label><input type="text" th:field="*{extName}"/><br/>
+    <label>Date</label><input type="text" th:field="*{date}"/><br/>
+    <label>Ere</label>
+    <select th:field="*{era}" multiple>
+        <option th:each="extension : ${extensions}" th:value="${extension}" th:text="${extension}"></option>
+    </select><br/>
+    <input th:type="submit" value="Créer">
+</form>
+
+<a th:href="@{/}"><button>Accueil</button></a>
+
+</body>
+</html>

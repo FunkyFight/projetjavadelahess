@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Carte</title>
+</head>
+<body>
+
+<p>ID : [[${card.id}]]</p>
+<p>Nom : [[${card.cardname}]]</p>
+<p>Extension : [[${card.extension}]]</p>
+<p>Commentaire : [[${card.comment}]]</p>
+<p>Possédée : [[${card.have}]]</p>
+
+<a th:href="@{/}"><button>Accueil</button></a>
+
+</body>
+</html>

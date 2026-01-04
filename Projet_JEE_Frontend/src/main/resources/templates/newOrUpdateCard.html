@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Création/Modification de carte</title>
+</head>
+<body>
+<p>Ici, vous pouvez créer ou modifier une carte.</p><br>
+<p>Si son id existe déjà, la carte avec cet id sera modifié. Sinon, une autre carte sera créée à partir des informations saisies.</p><br>
+<form th:action="@{/cards/newOrUpdate}" th:method="post" th:object="${newCard}">
+    <label>ID</label><input type="text" th:field="*{id}"/><br/>
+    <label>Nom</label><input type="text" th:field="*{cardName}"/><br/>
+    <label>Extension</label>
+    <select th:field="*{extension}" multiple>
+        <option th:each="extension : ${extensions}" th:value="${extension}" th:text="${extension}"></option>
+    </select><br>
+    <label>Commentaire</label><input type="text" th:field="*{comment}"/><br/>
+    <label>Possédé</label><input type="checkbox" th:field="*{have}"/><br/>
+    <input th:type="submit" value="Créer/Modifier">
+</form>
+
+<a th:href="@{/}"><button>Accueil</button></a>
+
+</body>
+</html>

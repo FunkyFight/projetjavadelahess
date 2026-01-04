@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche</title>
+</head>
+<body>
+<form th:action="@{/cards/search}" method="post" th:object="${cardSearch}">
+  <label>ID</label><input type="text" th:field="*{id}"/><br/>
+  <label>Nom</label><input type="text" th:field="*{cardName}"/><br/>
+  <label>Extension</label>
+  <label>Extension</label>
+  <select th:field="*{extension}" multiple>
+    <option th:each="extension : ${extensions}" th:value="${extension}" th:text="${extension}"></option>
+  </select><br>
+  <label>Commentaire</label><input type="text" th:field="*{comment}"/><br/>
+  <input th:type="submit" value="Rechercher"/>
+</form>
+
+<div th:if="${cards != null}">
+    <p th:text="${#lists.size(cards)} + ' carte(s) trouvée(s)'">
+
+  <div th:if="${#lists.isEmpty(cards)}">
+    <p>Aucune carte n'a été trouvée</p>
+  </div>
+
+  <table th:unless="${#lists.isEmpty(cards)}">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Extension</th>
+      <th>Commentaire</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="card : ${cards}">
+      <td th:text="${card.id}"></td>
+      <td>
+        <a th:href="@{/cards/{id}(id=${card.id})}"
+           th:text="${card.cardname}"></a>
+      </td>
+      <td th:text="${card.extension}"></td>
+      <td th:text="${card.comment}"></td>
+      <td>
+        <a th:href="@{/cards/{id}(id=${card.id})}">Détails</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
