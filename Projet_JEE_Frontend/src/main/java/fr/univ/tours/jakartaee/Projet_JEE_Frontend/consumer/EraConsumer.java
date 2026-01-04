@@ -19,10 +19,12 @@ public class EraConsumer {
         this.client = RestClient.create(backendUrl);
     }
 
-    public Era getEraById(String id){
+    public Era getEraById(String id) {
         return client.get().uri("/eras/{id}", id)
                 .retrieve()
-                .onStatus(HttpStatusCode::is4xxClientError, (request, response) -> {throw new RuntimeException("4xx error");})
+                .onStatus(HttpStatusCode::is4xxClientError, (request, response) -> {
+                    throw new RuntimeException("4xx error");
+                })
                 .body(Era.class);
     }
 
@@ -31,7 +33,7 @@ public class EraConsumer {
         });
     }
 
-    public void createEra(Era era) {
-        client.post().uri("/eras").body(era).retrieve().body(Era.class);
+    public Era createEra(Era era) {
+        return client.post().uri("/eras").body(era).retrieve().body(Era.class);
     }
 }

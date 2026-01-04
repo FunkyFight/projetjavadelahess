@@ -1,6 +1,5 @@
 package fr.univ.tours.jakartaee.Projet_JEE_Frontend.controller;
 
-
 import fr.univ.tours.jakartaee.Projet_JEE_Frontend.consumer.EraConsumer;
 import fr.univ.tours.jakartaee.Projet_JEE_Frontend.consumer.ExtensionConsumer;
 import fr.univ.tours.jakartaee.Projet_JEE_Frontend.models.Era;
@@ -38,8 +37,8 @@ public class EraController {
 
     @PostMapping("/newEra")
     public String createExt(@ModelAttribute Era era) {
-        eraConsumer.createEra(era);
-        return "redirect:/era" + era.getId();
+        Era createdEra = eraConsumer.createEra(era);
+        return "redirect:/eras/" + createdEra.getId();
     }
 
     @GetMapping("/")

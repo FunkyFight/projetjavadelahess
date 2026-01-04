@@ -49,12 +49,11 @@ public class EraController {
             @ApiResponse(responseCode = "400", description = "Error")
     })
     @PostMapping
-    public ResponseEntity<Void> addEra(@RequestBody EraDTO eraDTO) {
-        System.out.println("DEBUG: addEra called with " + eraDTO); // Log de debug
-        // Pas de vérification d'existe car ID auto-généré
+    public ResponseEntity<EraDTO> addEra(@RequestBody EraDTO eraDTO) {
+        System.out.println("DEBUG: addEra called with " + eraDTO);
         EraEntity eraEntity = new EraEntity(eraDTO);
         eraEntity = eraRepository.save(eraEntity);
-        return ResponseEntity.created(URI.create("/eras/" + eraEntity.getId())).build();
+        return ResponseEntity.created(URI.create("/eras/" + eraEntity.getId())).body(new EraDTO(eraEntity));
     }
 
     @Operation(description = "Update an era", responses = {
